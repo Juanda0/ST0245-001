@@ -19,3 +19,4 @@ print(subconjuntos("Santi"))
 print(subconjuntos("abc"))
 
 #profe, no logramos eliminar el "None" de la impresion :c. Supongamos que no exite c:
+#si sabes ayudanos :c
