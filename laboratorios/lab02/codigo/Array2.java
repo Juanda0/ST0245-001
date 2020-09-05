@@ -30,3 +30,30 @@ public boolean has77(int[] nums) {
     }
   return false;
 }
+public boolean no14(int[] nums) {
+ boolean one=true, four=true;  
+    for (int i : nums) {
+        if(i==1) one = false;                
+        if(i==4) four = false;  
+    }
+      return one || four;           
+}
+public boolean only14(int[] nums) {
+    
+     
+    for (int i : nums) {
+        if(i!=1&&i!=4){
+          return false;
+        }                 
+       
+    }
+      return true;           
+}
+public boolean has22(int[] nums) {
+    for(int i = 0; i < nums.length - 1; i++) {
+        if(nums[i] == 2 && nums[i + 1] == 2)
+            return true;
+    }
+                
+    return false;
+}
