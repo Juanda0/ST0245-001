@@ -24,5 +24,6 @@ while i<=20000:
     start_time = time.time()
     insertion_Sort(arr)  
     end_time = time.time()
+    print('size:  '+ str(i))
     print('Time#'+ str(int(i/1000)) + ':  ' + str(end_time-start_time))
     i += 1000
