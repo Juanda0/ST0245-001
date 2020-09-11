@@ -107,7 +107,7 @@ class __main__():
   beesLinkedList = create_Bee_Linkedlist_From_Datasets('dataset10D.csv')
   beeAlfa = bee(-75.5616007379, 6.32870576905, 1628.36)
   beeBeta = bee(0,1,2)
-  #se recomienda remover el print(i.data_Bee...) en datasets grandes 
+  #se recomienda remover el print(beesLinkedList.data_Bee...) en datasets grandes 
   print(beesLinkedList.data_Bee() + '\nSearchinnnnnng')
   print(beesLinkedList.find_Bee(beeAlfa))
   print(beesLinkedList.find_Bee(beeBeta))
