@@ -1,6 +1,38 @@
 import numpy as np
 import pandas as pd
       
+
+#El valor numero 4 hace referencia al dato del estudiante "estu_tomo_cursopreparacion", usado para hacer el test
+#El valor numero 5 hace referencia al dato del estudiante "estu_cursodocentesies", usado para hacer el test
+#El valor numero 6 hace referencia al dato del estudiante "estu_cursoiesapoyoexterno", usado para hacer el test
+#El valor numero 7 hace referencia al dato del estudiante "estu_cursoiesexterna", usado para hacer el test
+#El valor numero 8 hace referencia al dato del estudiante "estu_simulacrotipoicfes", usado para hacer el test
+#El valor numero 13 hace referencia al dato del estudiante "fami_numlibros", usado para hacer el test
+#El valor numero 35 hace referencia al dato del estudiante "fami_tieneinternet.1", usado para hacer el test
+#El valor numero 36 hace referencia al dato del estudiante "fami_tienecomputador.1", usado para hacer el test
+#El valor numero 54 hace referencia al dato del estudiante "cole_bilingue", usado para hacer el test
+#El valor numero 65 hace referencia al dato del estudiante "punt_lenguaje", usado para hacer el test    
+#El valor numero 66 hace referencia al dato del estudiante "punt_matematicas", usado para hacer el test
+#El valor numero 67 hace referencia al dato del estudiante "punt_biologia", usado para hacer el test
+#El valor numero 68 hace referencia al dato del estudiante "punt_quimica", usado para hacer el test
+#El valor numero 69 hace referencia al dato del estudiante "punt_fisica", usado para hacer el test
+#El valor numero 70 hace referencia al dato del estudiante "punt_ciencias_sociales", usado para hacer el test
+#El valor numero 71 hace referencia al dato del estudiante "punt_filosofia", usado para hacer el test
+#El valor numero 72 hace referencia al dato del estudiante "punt_ingles", usado para hacer el test
+#El valor numero 73 hace referencia al dato del estudiante "desemp_ingles", usado para hacer el test
+    
+def main():
+
+    dataset = leerDatos('4_train_balanced_135000.csv').to_numpy()
+    
+    #Arreglo contiene posiciones a testear 
+    posVariables = [4,5,6,7,8,13,35,36,54,65,66,67,68,69,70,71,72,73]
+    for i in posVariables:
+        #Imprimime la condicion con menor impureza
+        print("para la columna " + str(i))
+        print("Las posibles condiciones a evaluar son: " + str(posiblesCondiciones(dataset, i)))
+        print("La condicion con menor impureza ponderada es: " + str(menorImpurezaPonderadaPorVariable(dataset, i)) + "\n \n")
+        
 #Procesa el dataset
 def leerDatos(archivo):
   datos = pd.read_csv(archivo, header=0, sep=';', encoding="utf-8")
@@ -121,7 +153,6 @@ def ginyImpurity(m, posVariable):
   proporcionExitosos = alumnosExitosos / (alumnosExitosos + alumnosNOExitosos)
   proporcionNOExitosos = alumnosNOExitosos / (alumnosExitosos + alumnosNOExitosos)
   impureza = 1 - (proporcionExitosos**2 + proporcionNOExitosos**2)
-  #borrar linea
   return impureza
 
 #calcula la impureza ponderada de dos matrices
@@ -168,20 +199,15 @@ def menorImpurezaPonderadaPorVariable(m, posVariable):
     matriz1 = matrices[0]
     matriz2 = matrices[1]
     impureza = ginyImpurityWeightened(matriz1, matriz2, posVariable)
-    print("Para la condicion: "+ str(condicion) +" la impureza es: %.4f" % impureza)
     if impureza < menorImpureza:
       menorCondicion = condicion
       menorImpureza = impureza
+  print("la menor impureza es: %.4f" % menorImpureza)
   return menorCondicion
 
-#El valor numero 4 hace referencia al dato del estudiante "estu_tomo_cursopreparacion", usado para hacer el test
-#El valor numero 54 hace referencia al dato del estudiante "Colegio bilingue", usado para hacer el test
-#El valor numero 65 hace referencia al dato del estudiante "puntaje Lenguaje", usado para hacer el test
-dataset = leerDatos('DatasetUTF-8B.csv').to_numpy()
-#Arreglo contiene posiciones a testear 
-posVariables = [4]
-for i in posVariables:
-    #Imprimime la condicion con menor impureza
-    print(posiblesCondiciones(dataset, i))
-    print("La condicion con menor impureza ponderada es: " + str(menorImpurezaPonderadaPorVariable(dataset, i)))
+
+#inicializacion del main
+if __name__ == "__main__":
+    main()
+
 
