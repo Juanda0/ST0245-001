@@ -1,7 +1,7 @@
 class Main:
   def main (): 	
     test = [50,30,24,5,28,45,98,52,60]
-    arbolitou = tree()
+    arbolitou = Tree()
     arbolitou.buildingTree(test)
     print("Para el recorrido en preorden de un arbol")
     arbolitou.preOrder()
@@ -14,7 +14,7 @@ class Node:
     self.right = None
     self.data = data
 
-class tree():	
+class Tree:	
   def __init__(self, root = None):
     self.root = root
 
@@ -37,23 +37,24 @@ class tree():
       self.insert(node.right, data)
 
   def preOrder(self):
-    tree.preOrderAux(self.root)
+    Tree.preOrderAux(self.root)
 
   def posOrder(self):
-    tree.posOrderAux(self.root)
+    Tree.posOrderAux(self.root)
 
   def preOrderAux(node): 
     if node is not None: 
       print(node.data),	
-      tree.preOrderAux(node.left)
-      tree.preOrderAux(node.right)
+      Tree.preOrderAux(node.left)
+      Tree.preOrderAux(node.right)
 
   def posOrderAux(node):
     if node is not None:
-      tree.posOrderAux(node.left)
-      tree.posOrderAux(node.right)
+      Tree.posOrderAux(node.left)
+      Tree.posOrderAux(node.right)
       print(node.data)
 
 if __name__ == "__main__":
 	Main.main()
+  
   
