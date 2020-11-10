@@ -2,64 +2,6 @@ import java.util.*;
 public class Main
 {
 
-    /**
-     * El método pathDFS es la solución del primer punto del taller.
-     * @param g el grafo en el que vamos a trabajar
-     * @source el nodo de donde parte la busqueda
-     * @destination el nodo al que se quiere llegar
-     * @return el valor booleano sobre si hay un camino
-     */
-    public static boolean pathDFS(Graph g, int source, int destination){
-        boolean [] checked = new boolean[g.size()+1];
-        return auxDFSPath(g, source, destination, checked);
-    }
-
-    private static boolean auxDFSPath(Graph g, int source, int destination, boolean[] checked){
-        ArrayList<Integer> next = g.getSuccessors(source);
-        checked[source] = true;
-        boolean answer = false;
-
-        if(destination == source){
-            answer = true;
-        }
-
-        for(int neighbor: next){//O(n)
-            if(checked[neighbor] == false){
-                answer = answer || auxDFSPath(g, neighbor, destination, checked); //O(n-1)
-            }
-        } //O(n^2)
-        return answer;
-    }
-
-    public static boolean pathBFS(Graph g, int source, int destination){
-        boolean [] checked = new boolean [g.size()+1];
-        return auxBFSPath(g, source, destination, checked);
-    }
-
-    private static boolean auxBFSPath(Graph g, int source, int destination, boolean[] checked){
-        ArrayList<Integer> visitedList = g.getSuccessors(source);
-        Queue<Integer> cola = new LinkedList<Integer>();        
-        checked[source] = true;
-
-        //Caso base
-        if(source == destination){
-            return true;
-        }
-
-        //Caso recursivo
-        boolean respuesta = false;
-        for (int nodo: visitedList){
-            if (!checked[nodo])
-                cola.add(nodo);
-        }   
-
-        while (cola.size() != 0 && !respuesta){
-            int sig = cola.poll();
-            respuesta = auxBFSPath(g, sig, destination, checked);
-        }
-        return respuesta;
-    }
-
     public static void printVertexDFS(Graph g, int source){
         boolean [] checked = new boolean[g.size()+1];
         System.out.println("Partiendo del vertice "+source+" se alcanza:");
@@ -138,15 +80,12 @@ public class Main
         }
 
         Graph graph = new GraphAL(vertices.size());
-        //System.out.println(vertices.size());
         for(String[] s : datos){
             int source = Integer.parseInt(s[0]);
             int destination = Integer.parseInt(s[1]);
             int weight = Integer.parseInt(s[2]);
             graph.addArc(source, destination, weight);
         }
-
-        System.out.println("\t---[Punto 3: Prueba Vertices DFS]---");
         printVertexDFS(graph, 1);
         //printVertexDFS(graph, 4);
     }
